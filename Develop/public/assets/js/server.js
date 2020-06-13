@@ -6,7 +6,8 @@ let fs = require("fs");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-require("./routes/routes")(app);
+require("./routes/htmlroutes")(app);
+require("./routes/apiRoutes")(app);
 
 // Starts the server to begin listening
 app.listen(PORT, function() {
