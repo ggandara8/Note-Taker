@@ -20,10 +20,6 @@ app.get("/notes", function(req, res) {
     res.sendFile(path.join(direc, "notes.html"));
 });
 
-app.get("*", function(req, res) {
-    res.sendFile(path.join(direc, "index.html"));
-});
-
 // Api routes
 app.get("/api/notes", function(req, res) {
     res.json(notes);
@@ -31,23 +27,20 @@ app.get("/api/notes", function(req, res) {
 
 app.post("/api/notes", function(req, res) {
     notes.push(req.body);
-    addId();
+    notes.forEach(function(item, i) {
+        item.id = i + 1;
+    });
     fs.writeFileSync("./Develop/db/db.json", JSON.stringify(notes));
 });
 
 //Delete obj
-app.delete("/api/notes/:id", function(req, res){
-    notes.splice( notes.findIndex(i => i.id === req.params.id), 1);
-    fs.writeFile("./Develop/db/db.json", JSON.stringify(notes));
+app.delete("/api/notes/:id", function(req, res) {
+    notes.splice(notes.findIndex((i) => i.id == req.params.id), 1);
+    fs.writeFile("./Develop/db/db.json", JSON.stringify(notes), function(error){
+        if (error) throw error;
+    });
     res.json(notes);
 });
-
-//Add id to objects
-function addId(){
-    notes.forEach((item, i) => {
-        item.id = i + 1;
-    });
-}
 
 // Starts the server to begin listening
 app.listen(PORT, function() {
