@@ -1,5 +1,7 @@
 # Unit 11 Express Homework: Note Taker
 
+## Heroku Deployment link https://young-wildwood-91998.herokuapp.com/notes
+
 ## Description
 
 Create an application that can be used to write, save, and delete notes. This application will use an express backend and save and retrieve note data from a JSON file.
@@ -64,4 +66,3 @@ Follow these guidelines for committing:
 
 We would like you to have well over 200 commits by graduation, so commit early and often!
 
-Deployment link https://ggandara8.github.io/Note-Taker/
